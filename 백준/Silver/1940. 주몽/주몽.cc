@@ -14,19 +14,26 @@ int main()
     cin >> N >> M;
     int count=0;
     vector<int> arr(N, 0);
-    int front=0, back=0, sum = 0;
+    int front=0, back=N-1, sum = 0;
     for (int i = 0; i < N; i++)
     {
         cin >> arr[i];
-    }
-    for (int i = 0; i < N-1; i++)
+    }  
+    sort(arr.begin(),arr.end());
+    while (front != back)
     {
-        for (int j = i+1; j < N; j++)
+        if (arr[front] + arr[back] == M)
         {
-            if (arr[i] + arr[j] == M)
-            {
-                count++;
-            }
+            count++;
+            front++;
+        }
+        else if (arr[front] + arr[back] > M)
+        {
+            back--;
+        }
+        else if (arr[front] + arr[back] < M)
+        {
+            front++;
         }
     }
 
